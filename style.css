@@ -1,0 +1,383 @@
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+    全体 / 共通クラス
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+
+html {
+    font-size: 100%;
+}
+body {
+  color: #333;
+  font-size: 1rem;
+  font-family: 'Noto Sans', 'Noto Sans JP', sans-serif;
+}
+a {
+  color: #333;
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+}
+li {
+  list-style: none;
+}
+/*コンテンツ幅を設定するための共通クラス*/
+.wrapper {
+  max-width: 1200px;
+  padding: 0 16px;
+  margin: 0 auto;
+}
+.readmore {
+  font-size: 0.875rem;
+  text-align: center;
+}
+/* 疑似要素で下線を設定するために、「position: relative;」を設定 */
+.readmore a {
+  padding-bottom: 1px;
+  color: #333;
+  position: relative;
+}
+/* position:absoluteを設定し、left、bottomで下線の位置を調整。
+widthとheightで、線の長さ・高さを設定。
+疑似要素で線を表示するには「content: '';」を設定。
+transition: all 200ms easeでホバー時の速度などを設定 */
+.readmore a::after {
+  content:'';
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background-color: #333;
+  transition: all 200ms ease;
+}
+/* ホバー時の下線の設定。
+opacity:0 下線を非表示。transform:translateY(3px) 下に3px移動 →下に3px移動しながら下線を非表示にする */
+.readmore a:hover::after {
+  opacity: 0;
+  transform: translateY(3px);
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+    header
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+
+/* position: fixedでヘッダーを固定し、z-index: 10で前面に表示。
+※他のコンテンツでpositionをrelative、absolute、fixedのいずれかに設定している場合は、z-indexの数値が大きい方が前面に表示される */
+header {
+  width: 100%;
+  background-color: #fff;
+  position: fixed;
+  z-index: 10;
+}
+header .site-title {
+  padding: 20px 16px;
+  line-height: 1px;
+}
+/* display:inline-blockで、リンクを親要素の範囲に広げる。
+※blockを指定すると横幅いっぱいまで広がってしまうため、inline-blockを設定 */
+header .site-title a {
+  display: inline-block;
+}
+.navi {
+  background-color: #333;
+}
+.navi a {
+  color: #fff;
+}
+.navi ul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+/* 16px × 0.875 =14px */
+.navi li {
+  font-style: 0.875rem;
+  padding: 10px 60px 10px 0;
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+    Pickup　　　 （　articleが横並びに3つ　）
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+
+.pickup {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 150px;margin-bottom: 60px;
+}
+.pickup article {
+  width: 32%;
+}
+.pickup .article-titile {
+  font-size: 1rem;
+  margin: 10px 0 15px 0;
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+    Coutainer  (mainとasideをくくるdivタグ）
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+
+/* mainとasideを横並びに */
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+    Main　　　（　articleが縦に3つ）
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+
+main {
+  width: 65%;
+}
+main article {
+  margin-bottom: 80px;
+}
+/* 16px × 1.5 =24px */
+main .article-title {
+  font-size: 1.5rem;
+  margin: 10px 0 15px 0;
+}
+/* 「日付」と「カテゴリ１」を含むulタグを横並びに。左から順に右へ向かって並べる */
+main ul {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  /* レイアウト崩れ解消 */
+  padding-left: 0;
+}
+/* 「日付」と「カテゴリ１」16px × 0.875   = 14px */
+main li {
+  font-size: 0.875rem;
+  margin-right: 20px;
+}
+/* 画像の下のテキスト */
+main .text {
+padding: 10px 20px 30px 40px;
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+    aside　　 縦にsextionが3つ　（１）author （２）ranking （３）archive
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+
+.sidebar {
+  width: 33%;
+  padding: 20px;
+}
+/* 16px × 1.125   = 18px */
+.sidebar .side-title {
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーー
+    aside :(1)author    プロフィールの部分
+ーーーーーーーーーーーーーーーーーーーーーーーー */
+
+.author {
+  text-align: center;
+  margin-bottom: 60px;
+}
+/* プロフィール（NameName)の画像 */
+.author img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  margin-bottom: 60px;
+}
+/* プロフィールのテキスト 16px × 0.875 =14px */
+.author .profile {
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーー
+    aside :(２) ranking
+ーーーーーーーーーーーーーーーーーーーーーーーーー */
+
+.ranking {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.ranking article {
+  margin-bottom: 30px;
+}
+/* h4 */
+.ranking .article-title {
+  font-size: 0.875rem;
+  font-weight: none;
+  text-align-last: left;
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーー
+    aside :(3) archive
+ーーーーーーーーーーーーーーーーーーーーーーーーー */
+
+.archive {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+
+/* liの1つ1つに上線をつける */
+.archive li {
+  font-size: 0.875rem;
+  border-top: solid 1px #777;
+  padding: 20px;
+  text-align-last: left;
+}
+
+/* liの一番下だけ下線をつける　  
+.archive ul　{border-bottom:solid 1px #777;}で、一番下に下線をつけると、
+一番下の線だけ長すぎて左に出っ張ってしまうので、li:last-childを使って一番下の下線をつける */
+.archive li:last-child {
+  border-bottom: solid 1px #777;
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+    footer  (1)About (2)Menu (3)Twitter
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+
+footer {
+  font-size: 0.875rem;
+  background-color: #f7f7f7;
+}
+/* 左右のpaddingは、共通クラスの.wrapperで、全体に16px設定済 */
+footer .content {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+/* divクラスcontentの中の「3つのdivタグ」 */
+footer .item {
+  width: 30%;
+}
+/* 16px × 1.125 =18px */
+footer .footer-title {
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+/* ーーーーーーーーーーーーーーーーーーーーーーーー
+    footer  (1)About
+ーーーーーーーーーーーーーーーーーーーーーーーーー */
+footer ul.about-list {
+  margin: 20px 0;
+  /* 左に余白ができてしまっていた。レイアウト崩れを解消 */
+  padding-left: 0;
+}
+footer ul.about-list li {
+  margin-bottom: 5px;
+}
+/* リストのaタグ 左側（前）に「三角矢印を表示用のスペース」を空けるためpadding:leftを指定 */
+footer ul.about-list .arrow {
+  position: relative;
+  display: inline-block;
+  padding-left: 12px;
+  color: #333;
+}
+/* 疑似要素でaタグの左側に「三角矢印」を表示。
+疑似要素で線を表示するには「content: '';」を設定。
+ブロック要素のwidthとheightを0にすることで縦幅、横幅がなくなる。
+border～プロパティで三角を作る。 
+周りにpxの線の太さを持ったborderで囲み、１箇所以外の色を透明にすると、三角形ができる。
+position:absoluteを設定し、top50%で縦中央に合わせleftで位置を調整。
+margin-topで縦ライン微調整　三角マークが少し下にずれているのを解消*/
+footer ul.about-list .arrow::before {
+  content:'';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 0 6px 8px;
+  border-color: transparent transparent transparent#333;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -6px;
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーー
+    footer  (2) Menu
+ーーーーーーーーーーーーーーーーーーーーーーーーー */
+
+/* リストの一番下に下線を引く */
+footer .menu-list {
+  border-bottom: solid 1px #777;
+
+  /* レイアウト崩れ解消 */
+  padding-left: 0;
+}
+/* リストの1つ1つに上線を引く */
+footer .menu-list li {
+  border-top: 1px solid #777;
+  padding: 15px;
+  text-align: left;
+}
+/* 16px × 0.75 = 12px */
+footer .copyright {
+  font-size: 0.750rem;
+  text-align: center;
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+    sp　　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+
+@media screen and (max-width: 767px) {
+  /* スマホではナビを横スクロールできるようにする */
+  /* ーーーーーーーーーーーーーーーーーー
+        header　　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　
+  ーーーーーーーーーーーーーーーーーーー */ 
+  .navi {
+    overflow-x: scroll;
+  } 
+   /* ーーーーーーーーーーーーーーーーーー
+        Pickup　　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　
+  ーーーーーーーーーーーーーーーーーーー */ 
+  /* 縦並びにして、横幅をいっぱいに広げ、1つ1つのarticleタブにmargin-bottomをつける */
+  .pickup {
+    flex-direction: column;
+    padding-top: 140px;
+  }
+  .pickup article {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  /* ーーーーーーーーーーーーーーーーーー
+        Container　　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　
+  ーーーーーーーーーーーーーーーーーーー */ 
+  /* mainとasideを縦並びにし、mainを横幅いっぱいに拡げる。 */
+  .container {
+    flex-direction: column;
+  }
+  main {
+    width: 100%;
+  }
+  /* ーーーーーーーーーーーーーーーーーー
+        Aside　　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦
+  ーーーーーーーーーーーーーーーーーーー */ 
+  /* 同じくAsideも横幅いっぱいに拡げ、paddingを無くす */
+  .sidebar {
+    width: 100%;
+    padding: 0;
+  }
+  /* スマホレイアウト崩れ解消 */
+  .archive ul {
+    padding-left: 0;
+  }
+  /* ーーーーーーーーーーーーーーーーーー
+        footer　　♦︎　♦︎　♦︎　♦︎　♦︎　♦︎　♦
+  ーーーーーーーーーーーーーーーーーーー */ 
+  /* footerの内容を囲っていdivタグを縦並びに */
+  footer .content {
+    flex-direction: column;
+  }
+  /* footerの中の3つのitemを横幅いっぱいに拡げる。
+  item1つ1つの間に余白を設けるためにmargin：bottomをつける */
+  footer .item {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+}
